@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="moon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Playwrite+BE+VLG:wght@100..400&display=swap');
+    </style>
+    <title>Scroll Down</title>
+</head>
+
+<body>
+    <section>
+        <h2 class="as">Scroll Down, Yoya❤️</h2>
+        <div class="image-contain"></div>
+    </section>
+    <h2 class="moon">My moon 💞🌚</h2>
+    <a href="https://yousefkaram5824.github.io/Beauty-YoYa/" style="--clr: #ff1867"><span>Click Me</span><i></i></a>
+    <script>
+        let imageUrl = "yoya.jpg";
+        let container = document.querySelector(".image-contain");
+        let slicewidth = 20;
+        let sliceheight = 20;
+        let rows = 40;
+        let cols = 35;
+        let slices = [];
+
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < cols; col++) {
+                let span = document.createElement("span");
+                span.classList.add("image-slice");
+                span.style.top = `${row * sliceheight}px`;
+                span.style.left = `${col * slicewidth}px`;
+                span.style.width = `${slicewidth}px`;
+                span.style.height = `${sliceheight}px`;
+                span.style.backgroundImage = `url(${imageUrl})`;
+                span.style.backgroundPosition = `-${col * slicewidth}px -${row * sliceheight}px`;
+                container.appendChild(span);
+                slices.push(span);
+            }
+        }
+
+        window.addEventListener("scroll", () => {
+            let scrollPosition = window.scrollY;
+            slices.forEach((slice, index) => {
+                if (scrollPosition > index * 0.5) {
+                    slice.style.transform = "translate(0,0) rotate(0deg)";
+                }
+                else {
+                    slice.style.transform = `translate(${Math.random() * 1000 - 500}px, ${Math.random() * 1000 - 500}px) rotate(${Math.random() * 360}deg)`;
+                }
+            });
+        });
+
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+
+</html>
